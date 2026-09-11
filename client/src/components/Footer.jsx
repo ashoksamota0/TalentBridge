@@ -506,6 +506,1034 @@
 
 // export default Footer;
 
+// import { assets } from "../assets/assets";
+
+// const Footer = () => {
+//   return (
+//     <footer className="mt-16">
+//       {/* Main Footer */}
+//       <div
+//         className="
+//         relative
+//         overflow-hidden
+//         bg-gradient-to-br
+//         from-emerald-950
+//         via-emerald-900
+//         to-teal-950
+//         text-white
+//       "
+//       >
+//         {/* ================= DECORATIVE CIRCLES ================= */}
+
+//         {/* Large left circle */}
+//         <div
+//           className="
+//           absolute
+//           -left-32
+//           top-24
+//           w-[390px]
+//           h-[390px]
+//           rounded-full
+//           bg-emerald-400/[0.08]
+//           pointer-events-none
+//         "
+//         ></div>
+
+//         {/* Left concentric rings */}
+//         <div
+//           className="
+//           absolute
+//           -left-44
+//           top-16
+//           w-[420px]
+//           h-[420px]
+//           rounded-full
+//           border
+//           border-emerald-400/20
+//           pointer-events-none
+//         "
+//         ></div>
+
+//         <div
+//           className="
+//           absolute
+//           -left-52
+//           top-8
+//           w-[500px]
+//           h-[500px]
+//           rounded-full
+//           border
+//           border-emerald-400/10
+//           pointer-events-none
+//         "
+//         ></div>
+
+//         {/* Top circle */}
+//         <div
+//           className="
+//           absolute
+//           left-[16%]
+//           -top-28
+//           w-[280px]
+//           h-[280px]
+//           rounded-full
+//           bg-emerald-400/[0.05]
+//           pointer-events-none
+//         "
+//         ></div>
+
+//         {/* Top-right large ring */}
+//         <div
+//           className="
+//           absolute
+//           -right-28
+//           -top-32
+//           w-[360px]
+//           h-[360px]
+//           rounded-full
+//           border
+//           border-emerald-300/30
+//           pointer-events-none
+//         "
+//         ></div>
+
+//         <div
+//           className="
+//           absolute
+//           -right-40
+//           -top-44
+//           w-[500px]
+//           h-[500px]
+//           rounded-full
+//           border
+//           border-emerald-400/10
+//           pointer-events-none
+//         "
+//         ></div>
+
+//         {/* Right lower circle */}
+//         <div
+//           className="
+//           absolute
+//           -right-24
+//           bottom-[-90px]
+//           w-[280px]
+//           h-[280px]
+//           rounded-full
+//           bg-emerald-400/[0.06]
+//           pointer-events-none
+//         "
+//         ></div>
+
+//         {/* Small glowing circle */}
+//         <div
+//           className="
+//           absolute
+//           right-[8%]
+//           top-[42%]
+//           w-12
+//           h-12
+//           rounded-full
+//           bg-emerald-400/20
+//           border
+//           border-emerald-300/30
+//           shadow-[0_0_25px_rgba(52,211,153,0.15)]
+//           pointer-events-none
+//         "
+//         ></div>
+
+//         {/* Bottom-left small circle */}
+//         <div
+//           className="
+//           absolute
+//           left-[11%]
+//           bottom-[22%]
+//           w-14
+//           h-14
+//           rounded-full
+//           bg-emerald-400/10
+//           border
+//           border-emerald-300/30
+//           pointer-events-none
+//         "
+//         ></div>
+
+//         {/* ================= DOT PATTERN ================= */}
+
+//         <div
+//           className="
+//           absolute
+//           right-[17%]
+//           top-8
+//           grid
+//           grid-cols-5
+//           gap-x-5
+//           gap-y-4
+//           opacity-60
+//           pointer-events-none
+//         "
+//         >
+//           {Array.from({ length: 20 }).map((_, index) => (
+//             <span
+//               key={index}
+//               className="
+//                 w-1.5
+//                 h-1.5
+//                 rounded-full
+//                 bg-emerald-400/60
+//               "
+//             ></span>
+//           ))}
+//         </div>
+
+//         {/* ================= CONTENT ================= */}
+
+//         <div className="relative container px-4 2xl:px-20 mx-auto">
+//           <div className="py-12 lg:py-14">
+//             <div
+//               className="
+//               grid
+//               grid-cols-1
+//               sm:grid-cols-2
+//               lg:grid-cols-[1.45fr_0.8fr_0.8fr_1.25fr]
+//               gap-10
+//               lg:gap-12
+//             "
+//             >
+//               {/* ================= BRAND ================= */}
+
+//               <div
+//                 className="
+//                 flex
+//                 flex-col
+//                 justify-center
+//                 items-center
+//                 lg:items-start
+//               "
+//               >
+//                 <div className="flex flex-col items-center w-max">
+//                   <img
+//                     src={assets.logo}
+//                     alt="TalentBridge"
+//                     className="w-[175px] object-contain"
+//                   />
+
+//                   <p
+//                     className="
+//                     mt-1
+//                     text-sm
+//                     text-emerald-100/70
+//                     whitespace-nowrap
+//                   "
+//                   >
+//                     Connecting Talent . Building Careers
+//                   </p>
+//                 </div>
+//               </div>
+
+//               {/* ================= EXPLORE ================= */}
+
+//               <div>
+//                 <h3 className="text-base font-semibold mb-5">Explore</h3>
+
+//                 {/* Small Accent */}
+//                 <div className="w-10 h-1 bg-emerald-400 rounded-full mb-5"></div>
+
+//                 <div className="flex flex-col gap-3">
+//                   <a
+//                     href="#"
+//                     className="
+//                       text-sm
+//                       text-emerald-100/70
+//                       hover:text-white
+//                       transition-colors
+//                     "
+//                   >
+//                     Jobs
+//                   </a>
+
+//                   <a
+//                     href="#"
+//                     className="
+//                       text-sm
+//                       text-emerald-100/70
+//                       hover:text-white
+//                       transition-colors
+//                     "
+//                   >
+//                     Companies
+//                   </a>
+
+//                   <a
+//                     href="#"
+//                     className="
+//                       text-sm
+//                       text-emerald-100/70
+//                       hover:text-white
+//                       transition-colors
+//                     "
+//                   >
+//                     Career Resources
+//                   </a>
+//                 </div>
+//               </div>
+
+//               {/* ================= COMPANY ================= */}
+
+//               <div>
+//                 <h3 className="text-base font-semibold mb-5">Company</h3>
+
+//                 {/* Small Accent */}
+//                 <div className="w-10 h-1 bg-emerald-400 rounded-full mb-5"></div>
+
+//                 <div className="flex flex-col gap-3">
+//                   <a
+//                     href="#"
+//                     className="
+//                       text-sm
+//                       text-emerald-100/70
+//                       hover:text-white
+//                       transition-colors
+//                     "
+//                   >
+//                     About Us
+//                   </a>
+
+//                   <a
+//                     href="#"
+//                     className="
+//                       text-sm
+//                       text-emerald-100/70
+//                       hover:text-white
+//                       transition-colors
+//                     "
+//                   >
+//                     Contact
+//                   </a>
+
+//                   <a
+//                     href="#"
+//                     className="
+//                       text-sm
+//                       text-emerald-100/70
+//                       hover:text-white
+//                       transition-colors
+//                     "
+//                   >
+//                     Privacy Policy
+//                   </a>
+//                 </div>
+//               </div>
+
+//               {/* ================= FOLLOW US ================= */}
+
+//               <div>
+//                 <h3 className="text-base font-semibold mb-5">Follow Us</h3>
+
+//                 {/* Small Accent */}
+//                 <div className="w-10 h-1 bg-emerald-400 rounded-full mb-5"></div>
+
+//                 {/* Social Icons */}
+//                 <div className="flex items-center gap-3">
+//                   {/* Facebook */}
+//                   <a
+//                     href="#"
+//                     className="
+//                       w-12
+//                       h-12
+//                       rounded-full
+//                       bg-white/[0.07]
+//                       border
+//                       border-emerald-300/20
+//                       flex
+//                       items-center
+//                       justify-center
+//                       hover:bg-emerald-400/20
+//                       hover:border-emerald-300/40
+//                       hover:-translate-y-1
+//                       transition-all
+//                       duration-200
+//                     "
+//                   >
+//                     <img
+//                       src={assets.facebook_icon}
+//                       alt="Facebook"
+//                       className="w-5 h-5 object-contain brightness-0 invert"
+//                     />
+//                   </a>
+
+//                   {/* Twitter */}
+//                   <a
+//                     href="#"
+//                     className="
+//                       w-12
+//                       h-12
+//                       rounded-full
+//                       bg-white/[0.07]
+//                       border
+//                       border-emerald-300/20
+//                       flex
+//                       items-center
+//                       justify-center
+//                       hover:bg-emerald-400/20
+//                       hover:border-emerald-300/40
+//                       hover:-translate-y-1
+//                       transition-all
+//                       duration-200
+//                     "
+//                   >
+//                     <img
+//                       src={assets.twitter_icon}
+//                       alt="Twitter"
+//                       className="w-5 h-5 object-contain brightness-0 invert"
+//                     />
+//                   </a>
+
+//                   {/* Instagram */}
+//                   <a
+//                     href="#"
+//                     className="
+//                       w-12
+//                       h-12
+//                       rounded-full
+//                       bg-white/[0.07]
+//                       border
+//                       border-emerald-300/20
+//                       flex
+//                       items-center
+//                       justify-center
+//                       hover:bg-emerald-400/20
+//                       hover:border-emerald-300/40
+//                       hover:-translate-y-1
+//                       transition-all
+//                       duration-200
+//                     "
+//                   >
+//                     <img
+//                       src={assets.instagram_icon}
+//                       alt="Instagram"
+//                       className="w-5 h-5 object-contain brightness-0 invert"
+//                     />
+//                   </a>
+//                 </div>
+
+//                 {/* Quote */}
+//                 <div
+//                   className="
+//                   mt-7
+//                   pl-4
+//                   border-l-2
+//                   border-emerald-400
+//                 "
+//                 >
+//                   <p
+//                     className="
+//                     text-sm
+//                     sm:text-base
+//                     text-emerald-50/90
+//                     leading-6
+//                     italic
+//                   "
+//                   >
+//                     “Opportunities don’t happen.
+//                     <br />
+//                     You find them.”
+//                   </p>
+
+//                   <div className="mt-3 flex items-center gap-1">
+//                     <span
+//                       className="
+//                       w-12
+//                       h-1
+//                       bg-emerald-300
+//                       rounded-full
+//                     "
+//                     ></span>
+
+//                     <span
+//                       className="
+//                       w-5
+//                       h-1
+//                       bg-emerald-500/50
+//                       rounded-full
+//                     "
+//                     ></span>
+//                   </div>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+
+//           {/* ================= BOTTOM BAR ================= */}
+
+//           <div className="border-t border-white/10">
+//             <div
+//               className="
+//               min-h-[64px]
+//               py-4
+//               flex
+//               flex-col
+//               sm:flex-row
+//               items-center
+//               justify-between
+//               gap-3
+//             "
+//             >
+//               <p
+//                 className="
+//                 text-xs
+//                 sm:text-sm
+//                 text-emerald-100/60
+//               "
+//               >
+//                 © 2026 TalentBridge | All Rights Reserved.
+//               </p>
+
+//               <p
+//                 className="
+//                 flex
+//                 items-center
+//                 gap-2
+//                 text-xs
+//                 sm:text-sm
+//                 text-emerald-100/70
+//               "
+//               >
+//                 <span
+//                   className="
+//                   text-emerald-400
+//                   text-base
+//                 "
+//                 >
+//                   ◆
+//                 </span>
+//                 Find your opportunity. Build your future.
+//               </p>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </footer>
+//   );
+// };
+
+// export default Footer;
+
+// import { Link } from "react-router-dom";
+// import { assets } from "../assets/assets";
+
+// const Footer = () => {
+//   return (
+//     <footer className="mt-16">
+//       {/* Main Footer */}
+//       <div
+//         className="
+//           relative
+//           overflow-hidden
+//           bg-gradient-to-br
+//           from-emerald-950
+//           via-emerald-900
+//           to-teal-950
+//           text-white
+//         "
+//       >
+//         {/* ================= DECORATIVE CIRCLES ================= */}
+
+//         {/* Large left circle */}
+//         <div
+//           className="
+//             absolute
+//             -left-32
+//             top-24
+//             w-[390px]
+//             h-[390px]
+//             rounded-full
+//             bg-emerald-400/[0.08]
+//             pointer-events-none
+//           "
+//         ></div>
+
+//         {/* Left concentric rings */}
+//         <div
+//           className="
+//             absolute
+//             -left-44
+//             top-16
+//             w-[420px]
+//             h-[420px]
+//             rounded-full
+//             border
+//             border-emerald-400/20
+//             pointer-events-none
+//           "
+//         ></div>
+
+//         <div
+//           className="
+//             absolute
+//             -left-52
+//             top-8
+//             w-[500px]
+//             h-[500px]
+//             rounded-full
+//             border
+//             border-emerald-400/10
+//             pointer-events-none
+//           "
+//         ></div>
+
+//         {/* Top circle */}
+//         <div
+//           className="
+//             absolute
+//             left-[16%]
+//             -top-28
+//             w-[280px]
+//             h-[280px]
+//             rounded-full
+//             bg-emerald-400/[0.05]
+//             pointer-events-none
+//           "
+//         ></div>
+
+//         {/* Top-right large ring */}
+//         <div
+//           className="
+//             absolute
+//             -right-28
+//             -top-32
+//             w-[360px]
+//             h-[360px]
+//             rounded-full
+//             border
+//             border-emerald-300/30
+//             pointer-events-none
+//           "
+//         ></div>
+
+//         <div
+//           className="
+//             absolute
+//             -right-40
+//             -top-44
+//             w-[500px]
+//             h-[500px]
+//             rounded-full
+//             border
+//             border-emerald-400/10
+//             pointer-events-none
+//           "
+//         ></div>
+
+//         {/* Right lower circle */}
+//         <div
+//           className="
+//             absolute
+//             -right-24
+//             bottom-[-90px]
+//             w-[280px]
+//             h-[280px]
+//             rounded-full
+//             bg-emerald-400/[0.06]
+//             pointer-events-none
+//           "
+//         ></div>
+
+//         {/* Small glowing circle */}
+//         <div
+//           className="
+//             absolute
+//             right-[8%]
+//             top-[42%]
+//             w-12
+//             h-12
+//             rounded-full
+//             bg-emerald-400/20
+//             border
+//             border-emerald-300/30
+//             shadow-[0_0_25px_rgba(52,211,153,0.15)]
+//             pointer-events-none
+//           "
+//         ></div>
+
+//         {/* Bottom-left small circle */}
+//         <div
+//           className="
+//             absolute
+//             left-[11%]
+//             bottom-[22%]
+//             w-14
+//             h-14
+//             rounded-full
+//             bg-emerald-400/10
+//             border
+//             border-emerald-300/30
+//             pointer-events-none
+//           "
+//         ></div>
+
+//         {/* ================= DOT PATTERN ================= */}
+
+//         <div
+//           className="
+//             absolute
+//             right-[17%]
+//             top-8
+//             grid
+//             grid-cols-5
+//             gap-x-5
+//             gap-y-4
+//             opacity-60
+//             pointer-events-none
+//           "
+//         >
+//           {Array.from({ length: 20 }).map((_, index) => (
+//             <span
+//               key={index}
+//               className="
+//                 w-1.5
+//                 h-1.5
+//                 rounded-full
+//                 bg-emerald-400/60
+//               "
+//             ></span>
+//           ))}
+//         </div>
+
+//         {/* ================= CONTENT ================= */}
+
+//         <div className="relative container px-4 2xl:px-20 mx-auto">
+//           <div className="py-12 lg:py-14">
+//             <div
+//               className="
+//                 grid
+//                 grid-cols-1
+//                 sm:grid-cols-2
+//                 lg:grid-cols-[1.45fr_0.8fr_0.8fr_1.25fr]
+//                 gap-10
+//                 lg:gap-12
+//               "
+//             >
+//               {/* ================= BRAND ================= */}
+
+//               <div
+//                 className="
+//                   flex
+//                   flex-col
+//                   justify-center
+//                   items-center
+//                   lg:items-start
+//                 "
+//               >
+//                 <div className="flex flex-col items-center w-max">
+//                   <img
+//                     src={assets.logo}
+//                     alt="TalentBridge"
+//                     className="w-[175px] object-contain"
+//                   />
+
+//                   <p
+//                     className="
+//                       mt-1
+//                       text-sm
+//                       text-emerald-100/70
+//                       whitespace-nowrap
+//                     "
+//                   >
+//                     Connecting Talent . Building Careers
+//                   </p>
+//                 </div>
+//               </div>
+
+//               {/* ================= EXPLORE ================= */}
+
+//               <div>
+//                 <h3 className="text-base font-semibold mb-5">Explore</h3>
+
+//                 {/* Small Accent */}
+//                 <div className="w-10 h-1 bg-emerald-400 rounded-full mb-5"></div>
+
+//                 <div className="flex flex-col gap-3">
+//                   <a
+//                     href="#"
+//                     className="
+//                       text-sm
+//                       text-emerald-100/70
+//                       hover:text-white
+//                       transition-colors
+//                     "
+//                   >
+//                     Jobs
+//                   </a>
+
+//                   <a
+//                     href="#"
+//                     className="
+//                       text-sm
+//                       text-emerald-100/70
+//                       hover:text-white
+//                       transition-colors
+//                     "
+//                   >
+//                     Companies
+//                   </a>
+
+//                   <a
+//                     href="#"
+//                     className="
+//                       text-sm
+//                       text-emerald-100/70
+//                       hover:text-white
+//                       transition-colors
+//                     "
+//                   >
+//                     Career Resources
+//                   </a>
+//                 </div>
+//               </div>
+
+//               {/* ================= COMPANY ================= */}
+
+//               <div>
+//                 <h3 className="text-base font-semibold mb-5">Company</h3>
+
+//                 {/* Small Accent */}
+//                 <div className="w-10 h-1 bg-emerald-400 rounded-full mb-5"></div>
+
+//                 <div className="flex flex-col gap-3">
+//                   <Link
+//                     to="/about"
+//                     className="
+//                       text-sm
+//                       text-emerald-100/70
+//                       hover:text-white
+//                       transition-colors
+//                     "
+//                   >
+//                     About Us
+//                   </Link>
+
+//                   <Link
+//                     to="/contact"
+//                     className="
+//                       text-sm
+//                       text-emerald-100/70
+//                       hover:text-white
+//                       transition-colors
+//                     "
+//                   >
+//                     Contact
+//                   </Link>
+
+//                   <Link
+//                     to="/privacy-policy"
+//                     className="
+//                       text-sm
+//                       text-emerald-100/70
+//                       hover:text-white
+//                       transition-colors
+//                     "
+//                   >
+//                     Privacy Policy
+//                   </Link>
+//                 </div>
+//               </div>
+
+//               {/* ================= FOLLOW US ================= */}
+
+//               <div>
+//                 <h3 className="text-base font-semibold mb-5">Follow Us</h3>
+
+//                 {/* Small Accent */}
+//                 <div className="w-10 h-1 bg-emerald-400 rounded-full mb-5"></div>
+
+//                 {/* Social Icons */}
+//                 <div className="flex items-center gap-3">
+//                   {/* Facebook */}
+//                   <a
+//                     href="#"
+//                     className="
+//                       w-12
+//                       h-12
+//                       rounded-full
+//                       bg-white/[0.07]
+//                       border
+//                       border-emerald-300/20
+//                       flex
+//                       items-center
+//                       justify-center
+//                       hover:bg-emerald-400/20
+//                       hover:border-emerald-300/40
+//                       hover:-translate-y-1
+//                       transition-all
+//                       duration-200
+//                     "
+//                   >
+//                     <img
+//                       src={assets.facebook_icon}
+//                       alt="Facebook"
+//                       className="w-5 h-5 object-contain brightness-0 invert"
+//                     />
+//                   </a>
+
+//                   {/* Twitter */}
+//                   <a
+//                     href="#"
+//                     className="
+//                       w-12
+//                       h-12
+//                       rounded-full
+//                       bg-white/[0.07]
+//                       border
+//                       border-emerald-300/20
+//                       flex
+//                       items-center
+//                       justify-center
+//                       hover:bg-emerald-400/20
+//                       hover:border-emerald-300/40
+//                       hover:-translate-y-1
+//                       transition-all
+//                       duration-200
+//                     "
+//                   >
+//                     <img
+//                       src={assets.twitter_icon}
+//                       alt="Twitter"
+//                       className="w-5 h-5 object-contain brightness-0 invert"
+//                     />
+//                   </a>
+
+//                   {/* Instagram */}
+//                   <a
+//                     href="#"
+//                     className="
+//                       w-12
+//                       h-12
+//                       rounded-full
+//                       bg-white/[0.07]
+//                       border
+//                       border-emerald-300/20
+//                       flex
+//                       items-center
+//                       justify-center
+//                       hover:bg-emerald-400/20
+//                       hover:border-emerald-300/40
+//                       hover:-translate-y-1
+//                       transition-all
+//                       duration-200
+//                     "
+//                   >
+//                     <img
+//                       src={assets.instagram_icon}
+//                       alt="Instagram"
+//                       className="w-5 h-5 object-contain brightness-0 invert"
+//                     />
+//                   </a>
+//                 </div>
+
+//                 {/* Quote */}
+//                 <div
+//                   className="
+//                     mt-7
+//                     pl-4
+//                     border-l-2
+//                     border-emerald-400
+//                   "
+//                 >
+//                   <p
+//                     className="
+//                       text-sm
+//                       sm:text-base
+//                       text-emerald-50/90
+//                       leading-6
+//                       italic
+//                     "
+//                   >
+//                     “Opportunities don’t happen.
+//                     <br />
+//                     You find them.”
+//                   </p>
+
+//                   <div className="mt-3 flex items-center gap-1">
+//                     <span
+//                       className="
+//                         w-12
+//                         h-1
+//                         bg-emerald-300
+//                         rounded-full
+//                       "
+//                     ></span>
+
+//                     <span
+//                       className="
+//                         w-5
+//                         h-1
+//                         bg-emerald-500/50
+//                         rounded-full
+//                       "
+//                     ></span>
+//                   </div>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+
+//           {/* ================= BOTTOM BAR ================= */}
+
+//           <div className="border-t border-white/10">
+//             <div
+//               className="
+//                 min-h-[64px]
+//                 py-4
+//                 flex
+//                 flex-col
+//                 sm:flex-row
+//                 items-center
+//                 justify-between
+//                 gap-3
+//               "
+//             >
+//               <p
+//                 className="
+//                   text-xs
+//                   sm:text-sm
+//                   text-emerald-100/60
+//                 "
+//               >
+//                 © 2026 TalentBridge | All Rights Reserved.
+//               </p>
+
+//               <p
+//                 className="
+//                   flex
+//                   items-center
+//                   gap-2
+//                   text-xs
+//                   sm:text-sm
+//                   text-emerald-100/70
+//                 "
+//               >
+//                 <span
+//                   className="
+//                     text-emerald-400
+//                     text-base
+//                   "
+//                 >
+//                   ◆
+//                 </span>
+//                 Find your opportunity. Build your future.
+//               </p>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </footer>
+//   );
+// };
+
+// export default Footer;
+
+import { Link } from "react-router-dom";
 import { assets } from "../assets/assets";
 
 const Footer = () => {
@@ -514,164 +1542,164 @@ const Footer = () => {
       {/* Main Footer */}
       <div
         className="
-        relative
-        overflow-hidden
-        bg-gradient-to-br
-        from-emerald-950
-        via-emerald-900
-        to-teal-950
-        text-white
-      "
+          relative
+          overflow-hidden
+          bg-gradient-to-br
+          from-emerald-950
+          via-emerald-900
+          to-teal-950
+          text-white
+        "
       >
         {/* ================= DECORATIVE CIRCLES ================= */}
 
         {/* Large left circle */}
         <div
           className="
-          absolute
-          -left-32
-          top-24
-          w-[390px]
-          h-[390px]
-          rounded-full
-          bg-emerald-400/[0.08]
-          pointer-events-none
-        "
+            absolute
+            -left-32
+            top-24
+            w-[390px]
+            h-[390px]
+            rounded-full
+            bg-emerald-400/[0.08]
+            pointer-events-none
+          "
         ></div>
 
         {/* Left concentric rings */}
         <div
           className="
-          absolute
-          -left-44
-          top-16
-          w-[420px]
-          h-[420px]
-          rounded-full
-          border
-          border-emerald-400/20
-          pointer-events-none
-        "
+            absolute
+            -left-44
+            top-16
+            w-[420px]
+            h-[420px]
+            rounded-full
+            border
+            border-emerald-400/20
+            pointer-events-none
+          "
         ></div>
 
         <div
           className="
-          absolute
-          -left-52
-          top-8
-          w-[500px]
-          h-[500px]
-          rounded-full
-          border
-          border-emerald-400/10
-          pointer-events-none
-        "
+            absolute
+            -left-52
+            top-8
+            w-[500px]
+            h-[500px]
+            rounded-full
+            border
+            border-emerald-400/10
+            pointer-events-none
+          "
         ></div>
 
         {/* Top circle */}
         <div
           className="
-          absolute
-          left-[16%]
-          -top-28
-          w-[280px]
-          h-[280px]
-          rounded-full
-          bg-emerald-400/[0.05]
-          pointer-events-none
-        "
+            absolute
+            left-[16%]
+            -top-28
+            w-[280px]
+            h-[280px]
+            rounded-full
+            bg-emerald-400/[0.05]
+            pointer-events-none
+          "
         ></div>
 
         {/* Top-right large ring */}
         <div
           className="
-          absolute
-          -right-28
-          -top-32
-          w-[360px]
-          h-[360px]
-          rounded-full
-          border
-          border-emerald-300/30
-          pointer-events-none
-        "
+            absolute
+            -right-28
+            -top-32
+            w-[360px]
+            h-[360px]
+            rounded-full
+            border
+            border-emerald-300/30
+            pointer-events-none
+          "
         ></div>
 
         <div
           className="
-          absolute
-          -right-40
-          -top-44
-          w-[500px]
-          h-[500px]
-          rounded-full
-          border
-          border-emerald-400/10
-          pointer-events-none
-        "
+            absolute
+            -right-40
+            -top-44
+            w-[500px]
+            h-[500px]
+            rounded-full
+            border
+            border-emerald-400/10
+            pointer-events-none
+          "
         ></div>
 
         {/* Right lower circle */}
         <div
           className="
-          absolute
-          -right-24
-          bottom-[-90px]
-          w-[280px]
-          h-[280px]
-          rounded-full
-          bg-emerald-400/[0.06]
-          pointer-events-none
-        "
+            absolute
+            -right-24
+            bottom-[-90px]
+            w-[280px]
+            h-[280px]
+            rounded-full
+            bg-emerald-400/[0.06]
+            pointer-events-none
+          "
         ></div>
 
         {/* Small glowing circle */}
         <div
           className="
-          absolute
-          right-[8%]
-          top-[42%]
-          w-12
-          h-12
-          rounded-full
-          bg-emerald-400/20
-          border
-          border-emerald-300/30
-          shadow-[0_0_25px_rgba(52,211,153,0.15)]
-          pointer-events-none
-        "
+            absolute
+            right-[8%]
+            top-[42%]
+            w-12
+            h-12
+            rounded-full
+            bg-emerald-400/20
+            border
+            border-emerald-300/30
+            shadow-[0_0_25px_rgba(52,211,153,0.15)]
+            pointer-events-none
+          "
         ></div>
 
         {/* Bottom-left small circle */}
         <div
           className="
-          absolute
-          left-[11%]
-          bottom-[22%]
-          w-14
-          h-14
-          rounded-full
-          bg-emerald-400/10
-          border
-          border-emerald-300/30
-          pointer-events-none
-        "
+            absolute
+            left-[11%]
+            bottom-[22%]
+            w-14
+            h-14
+            rounded-full
+            bg-emerald-400/10
+            border
+            border-emerald-300/30
+            pointer-events-none
+          "
         ></div>
 
         {/* ================= DOT PATTERN ================= */}
 
         <div
           className="
-          absolute
-          right-[17%]
-          top-8
-          grid
-          grid-cols-5
-          gap-x-5
-          gap-y-4
-          opacity-60
-          pointer-events-none
-        "
+            absolute
+            right-[17%]
+            top-8
+            grid
+            grid-cols-5
+            gap-x-5
+            gap-y-4
+            opacity-60
+            pointer-events-none
+          "
         >
           {Array.from({ length: 20 }).map((_, index) => (
             <span
@@ -692,24 +1720,24 @@ const Footer = () => {
           <div className="py-12 lg:py-14">
             <div
               className="
-              grid
-              grid-cols-1
-              sm:grid-cols-2
-              lg:grid-cols-[1.45fr_0.8fr_0.8fr_1.25fr]
-              gap-10
-              lg:gap-12
-            "
+                grid
+                grid-cols-1
+                sm:grid-cols-2
+                lg:grid-cols-[1.45fr_0.8fr_0.8fr_1.25fr]
+                gap-10
+                lg:gap-12
+              "
             >
               {/* ================= BRAND ================= */}
 
               <div
                 className="
-                flex
-                flex-col
-                justify-center
-                items-center
-                lg:items-start
-              "
+                  flex
+                  flex-col
+                  justify-center
+                  items-center
+                  lg:items-start
+                "
               >
                 <div className="flex flex-col items-center w-max">
                   <img
@@ -720,13 +1748,13 @@ const Footer = () => {
 
                   <p
                     className="
-                    mt-1
-                    text-sm
-                    text-emerald-100/70
-                    whitespace-nowrap
-                  "
+                      mt-1
+                      text-sm
+                      text-emerald-100/70
+                      whitespace-nowrap
+                    "
                   >
-                    Connecting Talent . Building Careers
+                    Connecting Talent. Building Careers
                   </p>
                 </div>
               </div>
@@ -736,7 +1764,6 @@ const Footer = () => {
               <div>
                 <h3 className="text-base font-semibold mb-5">Explore</h3>
 
-                {/* Small Accent */}
                 <div className="w-10 h-1 bg-emerald-400 rounded-full mb-5"></div>
 
                 <div className="flex flex-col gap-3">
@@ -783,12 +1810,11 @@ const Footer = () => {
               <div>
                 <h3 className="text-base font-semibold mb-5">Company</h3>
 
-                {/* Small Accent */}
                 <div className="w-10 h-1 bg-emerald-400 rounded-full mb-5"></div>
 
                 <div className="flex flex-col gap-3">
-                  <a
-                    href="#"
+                  <Link
+                    to="/about"
                     className="
                       text-sm
                       text-emerald-100/70
@@ -797,10 +1823,10 @@ const Footer = () => {
                     "
                   >
                     About Us
-                  </a>
+                  </Link>
 
-                  <a
-                    href="#"
+                  <Link
+                    to="/contact"
                     className="
                       text-sm
                       text-emerald-100/70
@@ -809,10 +1835,10 @@ const Footer = () => {
                     "
                   >
                     Contact
-                  </a>
+                  </Link>
 
-                  <a
-                    href="#"
+                  <Link
+                    to="/privacy-policy"
                     className="
                       text-sm
                       text-emerald-100/70
@@ -821,7 +1847,7 @@ const Footer = () => {
                     "
                   >
                     Privacy Policy
-                  </a>
+                  </Link>
                 </div>
               </div>
 
@@ -830,14 +1856,16 @@ const Footer = () => {
               <div>
                 <h3 className="text-base font-semibold mb-5">Follow Us</h3>
 
-                {/* Small Accent */}
                 <div className="w-10 h-1 bg-emerald-400 rounded-full mb-5"></div>
 
                 {/* Social Icons */}
                 <div className="flex items-center gap-3">
                   {/* Facebook */}
                   <a
-                    href="#"
+                    href="https://www.facebook.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Facebook"
                     className="
                       w-12
                       h-12
@@ -858,13 +1886,16 @@ const Footer = () => {
                     <img
                       src={assets.facebook_icon}
                       alt="Facebook"
-                      className="w-5 h-5 object-contain brightness-0 invert"
+                      className="w-7 h-7 object-contain brightness-0 invert"
                     />
                   </a>
 
-                  {/* Twitter */}
+                  {/* X / Twitter */}
                   <a
-                    href="#"
+                    href="https://x.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="X"
                     className="
                       w-12
                       h-12
@@ -882,16 +1913,22 @@ const Footer = () => {
                       duration-200
                     "
                   >
-                    <img
-                      src={assets.twitter_icon}
-                      alt="Twitter"
-                      className="w-5 h-5 object-contain brightness-0 invert"
-                    />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      className="w-[17px] h-[17px] fill-white"
+                      aria-hidden="true"
+                    >
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817-5.963 6.817H1.684l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" />
+                    </svg>
                   </a>
 
                   {/* Instagram */}
                   <a
-                    href="#"
+                    href="https://www.instagram.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
                     className="
                       w-12
                       h-12
@@ -912,7 +1949,7 @@ const Footer = () => {
                     <img
                       src={assets.instagram_icon}
                       alt="Instagram"
-                      className="w-5 h-5 object-contain brightness-0 invert"
+                      className="w-7 h-7 object-contain brightness-0 invert"
                     />
                   </a>
                 </div>
@@ -920,20 +1957,20 @@ const Footer = () => {
                 {/* Quote */}
                 <div
                   className="
-                  mt-7
-                  pl-4
-                  border-l-2
-                  border-emerald-400
-                "
+                    mt-7
+                    pl-4
+                    border-l-2
+                    border-emerald-400
+                  "
                 >
                   <p
                     className="
-                    text-sm
-                    sm:text-base
-                    text-emerald-50/90
-                    leading-6
-                    italic
-                  "
+                      text-sm
+                      sm:text-base
+                      text-emerald-50/90
+                      leading-6
+                      italic
+                    "
                   >
                     “Opportunities don’t happen.
                     <br />
@@ -943,20 +1980,20 @@ const Footer = () => {
                   <div className="mt-3 flex items-center gap-1">
                     <span
                       className="
-                      w-12
-                      h-1
-                      bg-emerald-300
-                      rounded-full
-                    "
+                        w-12
+                        h-1
+                        bg-emerald-300
+                        rounded-full
+                      "
                     ></span>
 
                     <span
                       className="
-                      w-5
-                      h-1
-                      bg-emerald-500/50
-                      rounded-full
-                    "
+                        w-5
+                        h-1
+                        bg-emerald-500/50
+                        rounded-full
+                      "
                     ></span>
                   </div>
                 </div>
@@ -969,41 +2006,41 @@ const Footer = () => {
           <div className="border-t border-white/10">
             <div
               className="
-              min-h-[64px]
-              py-4
-              flex
-              flex-col
-              sm:flex-row
-              items-center
-              justify-between
-              gap-3
-            "
+                min-h-[64px]
+                py-4
+                flex
+                flex-col
+                sm:flex-row
+                items-center
+                justify-between
+                gap-3
+              "
             >
               <p
                 className="
-                text-xs
-                sm:text-sm
-                text-emerald-100/60
-              "
+                  text-xs
+                  sm:text-sm
+                  text-emerald-100/60
+                "
               >
                 © 2026 TalentBridge | All Rights Reserved.
               </p>
 
               <p
                 className="
-                flex
-                items-center
-                gap-2
-                text-xs
-                sm:text-sm
-                text-emerald-100/70
-              "
+                  flex
+                  items-center
+                  gap-2
+                  text-xs
+                  sm:text-sm
+                  text-emerald-100/70
+                "
               >
                 <span
                   className="
-                  text-emerald-400
-                  text-base
-                "
+                    text-emerald-400
+                    text-base
+                  "
                 >
                   ◆
                 </span>
