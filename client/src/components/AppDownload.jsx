@@ -829,7 +829,7 @@ const AppDownload = () => {
             {/* App Store Buttons */}
             <div className="flex flex-wrap gap-3">
               <a
-                href="https://play.google.com/"
+                href="https://play.google.com/store/apps"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="
