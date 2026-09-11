@@ -15,58 +15,185 @@ const JobListing = () => {
 
   const [filteredJobs, setFilteredJobs] = useState(jobs);
 
-  // Category filter
+  // =========================================================
+  // CHECK WHETHER TOP SEARCH IS ACTIVE
+  // =========================================================
+
+  const hasTopSearch =
+    searchFilter.title.trim() !== "" || searchFilter.location.trim() !== "";
+
+  // =========================================================
+  // CATEGORY FILTER
+  // =========================================================
+
   const handleCategoryChange = (category) => {
     setSelectedCategories((prev) =>
       prev.includes(category)
-        ? prev.filter((c) => c !== category)
+        ? prev.filter((item) => item !== category)
         : [...prev, category],
     );
+
+    setCurrentPage(1);
   };
 
-  // Location filter
+  // =========================================================
+  // LOCATION FILTER
+  // =========================================================
+
   const handleLocationChange = (location) => {
     setSelectedLocations((prev) =>
       prev.includes(location)
-        ? prev.filter((c) => c !== location)
+        ? prev.filter((item) => item !== location)
         : [...prev, location],
     );
+
+    setCurrentPage(1);
   };
 
-  // Filter jobs
+  // =========================================================
+  // FILTER JOBS
+  // =========================================================
+
   useEffect(() => {
-    const matchesCategory = (job) =>
-      selectedCategories.length === 0 ||
-      selectedCategories.includes(job.category);
+    const titleSearch = searchFilter.title.trim().toLowerCase();
+    const locationSearch = searchFilter.location.trim().toLowerCase();
 
-    const matchesLocation = (job) =>
-      selectedLocations.length === 0 ||
-      selectedLocations.includes(job.location);
+    const matchesCategory = (job) => {
+      return (
+        selectedCategories.length === 0 ||
+        selectedCategories.includes(job.category)
+      );
+    };
 
-    const matchesTitle = (job) =>
-      searchFilter.title === "" ||
-      job.title.toLowerCase().includes(searchFilter.title.toLowerCase());
+    const matchesLocation = (job) => {
+      return (
+        selectedLocations.length === 0 ||
+        selectedLocations.includes(job.location)
+      );
+    };
 
-    const matchesSearchLocation = (job) =>
-      searchFilter.location === "" ||
-      job.location.toLowerCase().includes(searchFilter.location.toLowerCase());
+    // ---------------------------------------------------------
+    // TOP SEARCH - FIRST INPUT
+    // Searches:
+    // Job title
+    // Category
+    // Company name
+    // Location
+    // ---------------------------------------------------------
 
-    const newFilteredJobs = jobs
-      .slice()
-      .filter(
-        (job) =>
-          matchesCategory(job) &&
-          matchesLocation(job) &&
-          matchesTitle(job) &&
-          matchesSearchLocation(job),
-      )
-      .sort((a, b) => b.date - a.date);
+    const matchesTopSearchTitle = (job) => {
+      if (titleSearch === "") return true;
+
+      const jobTitle = job.title?.toLowerCase() || "";
+      const category = job.category?.toLowerCase() || "";
+      const location = job.location?.toLowerCase() || "";
+      const companyName = job.companyId?.name?.toLowerCase() || "";
+
+      return (
+        jobTitle.includes(titleSearch) ||
+        category.includes(titleSearch) ||
+        location.includes(titleSearch) ||
+        companyName.includes(titleSearch)
+      );
+    };
+
+    // ---------------------------------------------------------
+    // TOP SEARCH - SECOND INPUT
+    // Primarily searches location.
+    // Category is also included so inputs like:
+    // "Jaipur | Programming"
+    // can still return matching jobs.
+    // ---------------------------------------------------------
+
+    const matchesTopSearchLocation = (job) => {
+      if (locationSearch === "") return true;
+
+      const jobLocation = job.location?.toLowerCase() || "";
+      const category = job.category?.toLowerCase() || "";
+
+      return (
+        jobLocation.includes(locationSearch) ||
+        category.includes(locationSearch)
+      );
+    };
+
+    let newFilteredJobs;
+
+    // ---------------------------------------------------------
+    // WHEN TOP SEARCH IS ACTIVE
+    // IGNORE SIDEBAR FILTERS
+    // ---------------------------------------------------------
+
+    if (hasTopSearch) {
+      newFilteredJobs = jobs
+        .slice()
+        .filter(
+          (job) => matchesTopSearchTitle(job) && matchesTopSearchLocation(job),
+        );
+    }
+
+    // ---------------------------------------------------------
+    // WHEN TOP SEARCH IS NOT ACTIVE
+    // USE SIDEBAR FILTERS
+    // ---------------------------------------------------------
+    else {
+      newFilteredJobs = jobs
+        .slice()
+        .filter((job) => matchesCategory(job) && matchesLocation(job));
+    }
+
+    // ---------------------------------------------------------
+    // LATEST JOBS FIRST
+    // ---------------------------------------------------------
+
+    newFilteredJobs.sort((a, b) => b.date - a.date);
 
     setFilteredJobs(newFilteredJobs);
     setCurrentPage(1);
-  }, [jobs, selectedCategories, selectedLocations, searchFilter]);
+  }, [jobs, selectedCategories, selectedLocations, searchFilter, hasTopSearch]);
 
-  const totalPages = Math.ceil(filteredJobs.length / 6);
+  // =========================================================
+  // PAGINATION
+  // =========================================================
+
+  const jobsPerPage = 6;
+
+  const totalPages = Math.ceil(filteredJobs.length / jobsPerPage);
+
+  const startIndex = (currentPage - 1) * jobsPerPage;
+  const currentJobs = filteredJobs.slice(startIndex, startIndex + jobsPerPage);
+
+  // =========================================================
+  // CLEAR SIDEBAR FILTERS
+  // =========================================================
+
+  const clearFilters = () => {
+    setSelectedCategories([]);
+    setSelectedLocations([]);
+    setCurrentPage(1);
+  };
+
+  // =========================================================
+  // CLEAR TOP SEARCH
+  // =========================================================
+
+  const clearTitleSearch = () => {
+    setSearchFilter((prev) => ({
+      ...prev,
+      title: "",
+    }));
+
+    setCurrentPage(1);
+  };
+
+  const clearLocationSearch = () => {
+    setSearchFilter((prev) => ({
+      ...prev,
+      location: "",
+    }));
+
+    setCurrentPage(1);
+  };
 
   return (
     <div
@@ -92,9 +219,20 @@ const JobListing = () => {
             shadow-sm
           "
         >
-          {/* Sidebar Header */}
+          {/* ================================================= */}
+          {/* SIDEBAR HEADER */}
+          {/* ================================================= */}
+
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-9 h-9 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center">
+            <div
+              className="
+                w-9 h-9
+                rounded-xl
+                bg-emerald-50
+                border border-emerald-100
+                flex items-center justify-center
+              "
+            >
               <span className="text-lg">⚙️</span>
             </div>
 
@@ -112,14 +250,16 @@ const JobListing = () => {
           {/* ================================================= */}
 
           {isSearched &&
-            (searchFilter.title !== "" || searchFilter.location !== "") && (
+            (searchFilter.title.trim() !== "" ||
+              searchFilter.location.trim() !== "") && (
               <div className="mb-6">
                 <h3 className="text-sm font-semibold text-slate-800 mb-3">
                   Current Search
                 </h3>
 
                 <div className="flex flex-wrap gap-2">
-                  {searchFilter.title && (
+                  {/* TITLE SEARCH */}
+                  {searchFilter.title.trim() !== "" && (
                     <span
                       className="
                         inline-flex
@@ -136,12 +276,7 @@ const JobListing = () => {
                       {searchFilter.title}
 
                       <img
-                        onClick={() =>
-                          setSearchFilter((prev) => ({
-                            ...prev,
-                            title: "",
-                          }))
-                        }
+                        onClick={clearTitleSearch}
                         className="
                           w-3
                           cursor-pointer
@@ -149,12 +284,13 @@ const JobListing = () => {
                           hover:opacity-100
                         "
                         src={assets.cross_icon}
-                        alt=""
+                        alt="Clear"
                       />
                     </span>
                   )}
 
-                  {searchFilter.location && (
+                  {/* LOCATION SEARCH */}
+                  {searchFilter.location.trim() !== "" && (
                     <span
                       className="
                         inline-flex
@@ -171,12 +307,7 @@ const JobListing = () => {
                       {searchFilter.location}
 
                       <img
-                        onClick={() =>
-                          setSearchFilter((prev) => ({
-                            ...prev,
-                            location: "",
-                          }))
-                        }
+                        onClick={clearLocationSearch}
                         className="
                           w-3
                           cursor-pointer
@@ -184,7 +315,7 @@ const JobListing = () => {
                           hover:opacity-100
                         "
                         src={assets.cross_icon}
-                        alt=""
+                        alt="Clear"
                       />
                     </span>
                   )}
@@ -192,8 +323,12 @@ const JobListing = () => {
               </div>
             )}
 
-          {/* Mobile Filter Button */}
+          {/* ================================================= */}
+          {/* MOBILE FILTER BUTTON */}
+          {/* ================================================= */}
+
           <button
+            type="button"
             onClick={() => setShowFilter((prev) => !prev)}
             className="
               w-full
@@ -213,7 +348,10 @@ const JobListing = () => {
             {showFilter ? "Close Filters" : "Filters"}
           </button>
 
-          {/* Filters */}
+          {/* ================================================= */}
+          {/* FILTERS */}
+          {/* ================================================= */}
+
           <div className={showFilter ? "block" : "max-lg:hidden"}>
             {/* ================================================= */}
             {/* CATEGORIES */}
@@ -221,7 +359,14 @@ const JobListing = () => {
 
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center">
+                <div
+                  className="
+                    w-8 h-8
+                    rounded-lg
+                    bg-emerald-50
+                    flex items-center justify-center
+                  "
+                >
                   <span className="text-sm">🏷️</span>
                 </div>
 
@@ -230,46 +375,58 @@ const JobListing = () => {
                     Search by Categories
                   </h4>
 
-                  <div className="w-8 h-0.5 bg-emerald-500 mt-1 rounded-full"></div>
+                  <div
+                    className="
+                      w-8 h-0.5
+                      bg-emerald-500
+                      mt-1
+                      rounded-full
+                    "
+                  ></div>
                 </div>
               </div>
 
               <ul className="space-y-1.5">
-                {JobCategories.map((category, index) => (
-                  <li key={index}>
-                    <label
-                      className={`
-                        flex
-                        items-center
-                        gap-3
-                        px-3
-                        py-2
-                        rounded-lg
-                        cursor-pointer
-                        transition
-                        ${
-                          selectedCategories.includes(category)
-                            ? "bg-emerald-50 text-emerald-700"
-                            : "text-slate-600 hover:bg-gray-50"
-                        }
-                      `}
-                    >
-                      <input
-                        className="
-                          w-4 h-4
-                          accent-emerald-600
-                          cursor-pointer
-                          shrink-0
-                        "
-                        type="checkbox"
-                        onChange={() => handleCategoryChange(category)}
-                        checked={selectedCategories.includes(category)}
-                      />
+                {JobCategories.map((category, index) => {
+                  const isSelected =
+                    !hasTopSearch && selectedCategories.includes(category);
 
-                      <span className="text-sm">{category}</span>
-                    </label>
-                  </li>
-                ))}
+                  return (
+                    <li key={index}>
+                      <label
+                        className={`
+                          flex
+                          items-center
+                          gap-3
+                          px-3
+                          py-2
+                          rounded-lg
+                          cursor-pointer
+                          transition
+                          ${
+                            isSelected
+                              ? "bg-emerald-50 text-emerald-700"
+                              : "text-slate-600 hover:bg-gray-50"
+                          }
+                        `}
+                      >
+                        <input
+                          className="
+                            w-4 h-4
+                            accent-emerald-600
+                            cursor-pointer
+                            shrink-0
+                          "
+                          type="checkbox"
+                          onChange={() => handleCategoryChange(category)}
+                          checked={isSelected}
+                        />
+
+                        <span className="text-sm">{category}</span>
+                      </label>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
 
@@ -285,7 +442,14 @@ const JobListing = () => {
 
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center">
+                <div
+                  className="
+                    w-8 h-8
+                    rounded-lg
+                    bg-emerald-50
+                    flex items-center justify-center
+                  "
+                >
                   <span className="text-sm">📍</span>
                 </div>
 
@@ -294,46 +458,58 @@ const JobListing = () => {
                     Search by Location
                   </h4>
 
-                  <div className="w-8 h-0.5 bg-emerald-500 mt-1 rounded-full"></div>
+                  <div
+                    className="
+                      w-8 h-0.5
+                      bg-emerald-500
+                      mt-1
+                      rounded-full
+                    "
+                  ></div>
                 </div>
               </div>
 
               <ul className="space-y-1.5">
-                {JobLocations.map((location, index) => (
-                  <li key={index}>
-                    <label
-                      className={`
-                        flex
-                        items-center
-                        gap-3
-                        px-3
-                        py-2
-                        rounded-lg
-                        cursor-pointer
-                        transition
-                        ${
-                          selectedLocations.includes(location)
-                            ? "bg-emerald-50 text-emerald-700"
-                            : "text-slate-600 hover:bg-gray-50"
-                        }
-                      `}
-                    >
-                      <input
-                        className="
-                          w-4 h-4
-                          accent-emerald-600
-                          cursor-pointer
-                          shrink-0
-                        "
-                        type="checkbox"
-                        onChange={() => handleLocationChange(location)}
-                        checked={selectedLocations.includes(location)}
-                      />
+                {JobLocations.map((location, index) => {
+                  const isSelected =
+                    !hasTopSearch && selectedLocations.includes(location);
 
-                      <span className="text-sm">{location}</span>
-                    </label>
-                  </li>
-                ))}
+                  return (
+                    <li key={index}>
+                      <label
+                        className={`
+                          flex
+                          items-center
+                          gap-3
+                          px-3
+                          py-2
+                          rounded-lg
+                          cursor-pointer
+                          transition
+                          ${
+                            isSelected
+                              ? "bg-emerald-50 text-emerald-700"
+                              : "text-slate-600 hover:bg-gray-50"
+                          }
+                        `}
+                      >
+                        <input
+                          className="
+                            w-4 h-4
+                            accent-emerald-600
+                            cursor-pointer
+                            shrink-0
+                          "
+                          type="checkbox"
+                          onChange={() => handleLocationChange(location)}
+                          checked={isSelected}
+                        />
+
+                        <span className="text-sm">{location}</span>
+                      </label>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
 
@@ -344,10 +520,8 @@ const JobListing = () => {
             {(selectedCategories.length > 0 ||
               selectedLocations.length > 0) && (
               <button
-                onClick={() => {
-                  setSelectedCategories([]);
-                  setSelectedLocations([]);
-                }}
+                type="button"
+                onClick={clearFilters}
                 className="
                   w-full
                   mt-6
@@ -374,7 +548,10 @@ const JobListing = () => {
       {/* ================================================= */}
 
       <section className="flex-1 min-w-0">
-        {/* Header */}
+        {/* ================================================= */}
+        {/* HEADER */}
+        {/* ================================================= */}
+
         <div id="job-list" className="mb-6">
           <div>
             <h3
@@ -400,8 +577,11 @@ const JobListing = () => {
           </div>
         </div>
 
-        {/* Jobs */}
-        {filteredJobs.length > 0 ? (
+        {/* ================================================= */}
+        {/* JOBS */}
+        {/* ================================================= */}
+
+        {currentJobs.length > 0 ? (
           <div
             className="
               grid
@@ -411,13 +591,15 @@ const JobListing = () => {
               gap-5
             "
           >
-            {filteredJobs
-              .slice((currentPage - 1) * 6, currentPage * 6)
-              .map((job, index) => (
-                <JobCard key={job._id || index} job={job} />
-              ))}
+            {currentJobs.map((job, index) => (
+              <JobCard key={job._id || index} job={job} />
+            ))}
           </div>
         ) : (
+          /* ================================================= */
+          /* NO JOBS */
+          /* ================================================= */
+
           <div
             className="
               bg-white
@@ -453,7 +635,7 @@ const JobListing = () => {
         {/* PAGINATION */}
         {/* ================================================= */}
 
-        {filteredJobs.length > 0 && (
+        {filteredJobs.length > 0 && totalPages > 1 && (
           <div
             className="
               flex
@@ -463,9 +645,10 @@ const JobListing = () => {
               mt-10
             "
           >
-            {/* Previous */}
+            {/* PREVIOUS */}
             <button
-              onClick={() => setCurrentPage(Math.max(currentPage - 1, 1))}
+              type="button"
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
               className="
                 w-9 h-9
@@ -488,35 +671,41 @@ const JobListing = () => {
               />
             </button>
 
-            {/* Page numbers */}
-            {Array.from({ length: totalPages }).map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentPage(index + 1)}
-                className={`
-                  w-9 h-9
-                  flex
-                  items-center
-                  justify-center
-                  rounded-lg
-                  border
-                  text-sm
-                  transition
-                  ${
-                    currentPage === index + 1
-                      ? "bg-emerald-600 text-white border-emerald-600"
-                      : "bg-white text-slate-600 border-gray-300 hover:bg-gray-50"
-                  }
-                `}
-              >
-                {index + 1}
-              </button>
-            ))}
+            {/* PAGE NUMBERS */}
+            {Array.from({ length: totalPages }).map((_, index) => {
+              const pageNumber = index + 1;
 
-            {/* Next */}
+              return (
+                <button
+                  type="button"
+                  key={pageNumber}
+                  onClick={() => setCurrentPage(pageNumber)}
+                  className={`
+                      w-9 h-9
+                      flex
+                      items-center
+                      justify-center
+                      rounded-lg
+                      border
+                      text-sm
+                      transition
+                      ${
+                        currentPage === pageNumber
+                          ? "bg-emerald-600 text-white border-emerald-600"
+                          : "bg-white text-slate-600 border-gray-300 hover:bg-gray-50"
+                      }
+                    `}
+                >
+                  {pageNumber}
+                </button>
+              );
+            })}
+
+            {/* NEXT */}
             <button
+              type="button"
               onClick={() =>
-                setCurrentPage(Math.min(currentPage + 1, totalPages))
+                setCurrentPage((prev) => Math.min(prev + 1, totalPages))
               }
               disabled={currentPage === totalPages}
               className="
