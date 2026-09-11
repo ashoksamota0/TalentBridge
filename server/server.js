@@ -10,13 +10,15 @@ import connectCloudinary from "./config/cloudinary.js";
 import jobRoutes from "./routes/jobRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import { clerkMiddleware } from "@clerk/express";
+// import { seedDemoJobs } from "./seed/demoJobs.js";
 
 // Initialize Express
 const app = express();
 
 // Connect to database
-connectDB();
+await connectDB();
 await connectCloudinary();
+// await seedDemoJobs();
 
 // Middlewares
 app.use(cors());
